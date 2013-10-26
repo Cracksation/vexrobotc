@@ -79,13 +79,13 @@ task main ()
     if((abs(speedCommandLeft) > speedCommandThreshold) && (abs(speedCommandLeft) > 0))
     {
       motor[leftFront]  = (speedCommandLeft);
-      motor[leftBack] = (speedCommandLeft);
+      motor[leftBack] = (speedCommandLeft*0.8);
     }
     // Backwards and swing turns: (both abs(X) and abs(Y) are above the speedCommandThreshold, and Y is NEGATIVE)
     if((abs(speedCommandRight) > speedCommandThreshold) && (abs(speedCommandRight) > 0))
     {
      	motor[rightFront] = (speedCommandRight);
-     	motor[rightBack] = (speedCommandRight);
+     	motor[rightBack] = (speedCommandRight*0.8);
     }
     // Turning in place: (abs(X) is above the speedCommandThreshold, abs(Y) is below the speedCommandThreshold)
  		if ((abs(speedCommandRight) < speedCommandThreshold))
