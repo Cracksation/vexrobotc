@@ -37,111 +37,111 @@
 task main ()
 {
 	// define easy to remember variables for the vexRT commands
-  word speedCommandLeft;            // desired speed command for left wheels, from left joystick
-  word speedCommandRight;           // desired speed command for right wheels, from right joystick
-  word speedCommandThreshold = 10;  // helps to eliminate 'noise' from a joystick that isn't perfectly at (0,0)
-  bool armUpCommand = false;				// true if the arm is being commanded to go up
-  bool armDownCommand = false;			// true if the arm is being commanded to go down
-  bool intakeInCommand = false;			// true if intake is being commanded to intake balls
-  bool intakeOutCommand = false;		// true if intake is being commanded to output balls
-  bool conveyorUpCommand = false;		// true if the conveyor is being commanded to pull balls away from intake
-  bool conveyorDownCommand = false;	// true if the conveyor is being commanded to push balls toward intake
-  bool armUpLimitReached = false;
-  bool armDownLimitReached = false;
-  bool moveRobotForward = false;
-  bool moveRobotBackward = false;
-  bool spinRobotLeft = false;
-  bool spinRobotRight = false;
+	word speedCommandLeft;            // desired speed command for left wheels, from left joystick
+	word speedCommandRight;           // desired speed command for right wheels, from right joystick
+	word speedCommandThreshold = 10;  // helps to eliminate 'noise' from a joystick that isn't perfectly at (0,0)
+	bool armUpCommand = false;				// true if the arm is being commanded to go up
+	bool armDownCommand = false;			// true if the arm is being commanded to go down
+	bool intakeInCommand = false;			// true if intake is being commanded to intake balls
+	bool intakeOutCommand = false;		// true if intake is being commanded to output balls
+	bool conveyorUpCommand = false;		// true if the conveyor is being commanded to pull balls away from intake
+	bool conveyorDownCommand = false;	// true if the conveyor is being commanded to push balls toward intake
+	bool armUpLimitReached = false;
+	bool armDownLimitReached = false;
+	bool moveRobotForward = false;
+	bool moveRobotBackward = false;
+	bool spinRobotLeft = false;
+	bool spinRobotRight = false;
 
 
 	// clear and stop all motors by resetting power to zero
-  motor[ port1 ] = 0;
-  motor[ port2 ] = 0;
-  motor[ port3 ] = 0;
-  motor[ port4 ] = 0;
-  motor[ port5 ] = 0;
-  motor[ port6 ] = 0;
-  motor[ port7 ] = 0;
-  motor[ port8 ] = 0;
-  motor[ port9 ] = 0;
-  motor[ port10 ] = 0;
+	motor[ port1 ] = 0;
+	motor[ port2 ] = 0;
+	motor[ port3 ] = 0;
+	motor[ port4 ] = 0;
+	motor[ port5 ] = 0;
+	motor[ port6 ] = 0;
+	motor[ port7 ] = 0;
+	motor[ port8 ] = 0;
+	motor[ port9 ] = 0;
+	motor[ port10 ] = 0;
 
-  while(1 == 1)
-  {
-  	// read all of the vex controller inputs to figure out what
-    // the driver wants to do.
-    speedCommandLeft 			= vexRT[Ch3];   //
-    speedCommandRight 		= vexRT[Ch2];   //
-    intakeInCommand 			= vexRT[Btn5U] == 1 ? true : false;
-    intakeOutCommand 			= vexRT[Btn5D] == 1 ? true : false;
-    conveyorUpCommand 		= vexRT[Btn6U] == 1 ? true : false;
-    conveyorDownCommand 	= vexRT[Btn6D] == 1 ? true : false;
-    armUpCommand 					= vexRT[Btn7U] == 1 ? true : false;
-    armDownCommand 				= vexRT[Btn7D] == 1 ? true : false;
-    moveRobotForward		  = vexRT[Btn8U] == 1 ? true : false;
-    moveRobotBackward		  = vexRT[Btn8D] == 1 ? true : false;
-    spinRobotLeft					= vexRT[Btn8L] == 1 ? true : false;
-    spinRobotRight 				= vexRT[Btn8R] == 1 ? true : false;
-    armUpLimitReached 		= SensorValue( upLimit ) == 1 ? true : false;
-    armDownLimitReached 	= SensorValue( downLimit ) == 1 ? true : false;
+	while(1 == 1)
+	{
+		// read all of the vex controller inputs to figure out what
+		// the driver wants to do.
+		speedCommandLeft 			= vexRT[Ch3];   //
+		speedCommandRight 		= vexRT[Ch2];   //
+		intakeInCommand 			= vexRT[Btn5U] == 1 ? true : false;
+		intakeOutCommand 			= vexRT[Btn5D] == 1 ? true : false;
+		conveyorUpCommand 		= vexRT[Btn6U] == 1 ? true : false;
+		conveyorDownCommand 	= vexRT[Btn6D] == 1 ? true : false;
+		armUpCommand 					= vexRT[Btn7U] == 1 ? true : false;
+		armDownCommand 				= vexRT[Btn7D] == 1 ? true : false;
+		moveRobotForward		  = vexRT[Btn8U] == 1 ? true : false;
+		moveRobotBackward		  = vexRT[Btn8D] == 1 ? true : false;
+		spinRobotLeft					= vexRT[Btn8L] == 1 ? true : false;
+		spinRobotRight 				= vexRT[Btn8R] == 1 ? true : false;
+		armUpLimitReached 		= SensorValue( upLimit ) == 1 ? true : false;
+		armDownLimitReached 	= SensorValue( downLimit ) == 1 ? true : false;
 
 		// check the limit switches and shut off the arm motors if the limit is reached
-    if(armDownLimitReached && ((motor[rightArm] > 0) || (motor[leftArm] > 0)))
-    {
-    	motor[rightArm] = 0;
-    	motor[leftArm] = 0;
- 		}
- 		if(armUpLimitReached && ((motor[rightArm] > 0) || (motor[leftArm] > 0)))
-    {
-    	motor[rightArm] = 0;
-    	motor[leftArm] = 0;
- 		}
+		if(armDownLimitReached && ((motor[rightArm] > 0) || (motor[leftArm] > 0)))
+		{
+			motor[rightArm] = 0;
+			motor[leftArm] = 0;
+		}
+		if(armUpLimitReached && ((motor[rightArm] > 0) || (motor[leftArm] > 0)))
+		{
+			motor[rightArm] = 0;
+			motor[leftArm] = 0;
+		}
 
- 		// check the wheel speed commands from the controller and move the wheels if the
- 		// controller input value is greater than the joystick noise threshold
-    if((abs(speedCommandLeft) > speedCommandThreshold) && (abs(speedCommandLeft) > 0))
-    {
-      motor[leftFront]  = (speedCommandLeft);
-      motor[leftBack] = (speedCommandLeft*0.8);
-    }
+		// check the wheel speed commands from the controller and move the wheels if the
+		// controller input value is greater than the joystick noise threshold
+		if((abs(speedCommandLeft) > speedCommandThreshold) && (abs(speedCommandLeft) > 0))
+		{
+			motor[leftFront]  = (speedCommandLeft);
+			motor[leftBack] = (speedCommandLeft*0.8);
+		}
 
-    if((abs(speedCommandRight) > speedCommandThreshold) && (abs(speedCommandRight) > 0))
-    {
-     	motor[rightFront] = (speedCommandRight);
-     	motor[rightBack] = (speedCommandRight*0.8);
-    }
+		if((abs(speedCommandRight) > speedCommandThreshold) && (abs(speedCommandRight) > 0))
+		{
+			motor[rightFront] = (speedCommandRight);
+			motor[rightBack] = (speedCommandRight*0.8);
+		}
 
-    // if the wheel speed command from the joystick is less than the joystick
-    // noise threshold then turn the motors off
- 		if ((abs(speedCommandRight) < speedCommandThreshold))
- 		{
- 			motor[rightFront] = 0;
- 			motor[rightBack] = 0;
- 		}
+		// if the wheel speed command from the joystick is less than the joystick
+		// noise threshold then turn the motors off
+		if ((abs(speedCommandRight) < speedCommandThreshold))
+		{
+			motor[rightFront] = 0;
+			motor[rightBack] = 0;
+		}
 
- 		if ((abs(speedCommandLeft) < speedCommandThreshold))
- 		{
- 			motor[leftFront] = 0;
- 			motor[leftBack] = 0;
- 		}
+		if ((abs(speedCommandLeft) < speedCommandThreshold))
+		{
+			motor[leftFront] = 0;
+			motor[leftBack] = 0;
+		}
 
- 		// if no command buttons are being pushed then shut both motors off
- 		// if both command buttons are being pushed at the same time then shut both motors off
- 		// else move the motor in the direction of the button being pushed
- 		if ( armUpCommand == false && armDownCommand == false )
- 		{
- 			motor[ rightArm ] = 0;
- 			motor[ leftArm ] = 0;
- 		}
- 		else if ( armUpCommand == true && armDownCommand == true )
- 		{
- 			motor[ rightArm ] = 0;
- 			motor[ leftArm] = 0;
- 		}
- 		else if ( armUpCommand == true )
- 		{
- 			motor[rightArm] = 50;
- 			motor[leftArm] = 50;
+		// if no command buttons are being pushed then shut both motors off
+		// if both command buttons are being pushed at the same time then shut both motors off
+		// else move the motor in the direction of the button being pushed
+		if ( armUpCommand == false && armDownCommand == false )
+		{
+			motor[ rightArm ] = 0;
+			motor[ leftArm ] = 0;
+		}
+		else if ( armUpCommand == true && armDownCommand == true )
+		{
+			motor[ rightArm ] = 0;
+			motor[ leftArm] = 0;
+		}
+		else if ( armUpCommand == true )
+		{
+			motor[rightArm] = 50;
+			motor[leftArm] = 50;
 		}
 		else if (armDownCommand == true )
 		{
@@ -154,12 +154,12 @@ task main ()
 			motor[ intake ] = 0;
 		}
 		else if ( intakeInCommand == true && intakeOutCommand == true )
- 		{
- 			motor[ intake ] = 0;
- 		}
- 		else if ( intakeInCommand == true )
- 		{
- 			motor[ intake ] = 127;
+		{
+			motor[ intake ] = 0;
+		}
+		else if ( intakeInCommand == true )
+		{
+			motor[ intake ] = 127;
 		}
 		else if (intakeOutCommand == true )
 		{
@@ -171,17 +171,17 @@ task main ()
 			motor[conveyor ] = 0;
 		}
 		else if ( conveyorUpCommand == true && conveyorDownCommand == true )
- 		{
- 			motor[ conveyor ] = 0;
- 		}
- 		else if ( conveyorUpCommand == true )
- 		{
- 			motor[ conveyor ] = 50;
+		{
+			motor[ conveyor ] = 0;
+		}
+		else if ( conveyorUpCommand == true )
+		{
+			motor[ conveyor ] = 50;
 		}
 		else if (conveyorDownCommand == true )
 		{
 			motor[ conveyor ] = -50;
 		}
-  }
+	}
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
