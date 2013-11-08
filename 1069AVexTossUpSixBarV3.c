@@ -169,6 +169,14 @@ task main ()
 		{
 			word errorLeftArm = armBumpPositionValue - SensorValue[armLeftEnc];
 			word errorRightArm = armBumpPositionValue - SensorValue[armRightEnc];
+			if(errorLeftArm < 0 && errorRightArm < 0 )
+			{
+				armGainP = 1;
+			}
+			else
+			{
+				armGainP = 7;
+			}
 			motor[armLeftMot1] = armGainP * errorLeftArm;
 			motor[armLeftMot2] = armGainP * errorLeftArm;
 			motor[armRightMot1] = armGainP * errorRightArm;
