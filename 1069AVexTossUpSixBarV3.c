@@ -151,7 +151,6 @@ task main ()
 		armUpCommand 					= vexRT[Btn6D] == 1 ? true : false;
 		armDownCommand 				= vexRT[Btn5D] == 1 ? true : false;
 		moveRobotForward		  = vexRT[Btn8U] == 1 ? true : false;
-		//moveRobotBackward		  = vexRT[Btn8D] == 1 ? true : false;
 		spinRobotLeft					= vexRT[Btn8L] == 1 ? true : false;
 		spinRobotRight 				= vexRT[Btn8R] == 1 ? true : false;
 		armUpLimitReached 		= SensorValue( upLimitSw ) == 1 ? true : false;
@@ -190,7 +189,6 @@ task main ()
 		// if both command buttons are being pushed at the same time then shut both motors off
 		// else move the motor in the direction of the button being pushed
 		// check the limit switches and shut off the arm motors if the limit is reached
-		//if(armDownLimitReached == true && ((motor[armRightMot1] < 0) || (motor[armLeftMot1] < 0) || (motor[armRightMot2] < 0) || (motor[armLeftMot2] < 0)))
 		if ( armBumpCmdBtn == true && armBumpCmdBtnReleased == true)
 		{
 			armBumpCmdBtnReleased = false;
@@ -235,7 +233,6 @@ task main ()
 			motor[armLeftMot1] = 0;
 			motor[armLeftMot2] = 0;
 		}
-		//else if(armUpLimitReached == true && ((motor[armRightMot1] > 0) || (motor[armRightMot2] > 0) || (motor[armLeftMot1] > 0) || (motor[armLeftMot2] > 0)))
 		else if(armUpLimitReached == true && armUpCommand == true)
 		{
 			motor[armRightMot1] = 0;
