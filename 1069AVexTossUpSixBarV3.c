@@ -34,6 +34,52 @@
 |*                                                                                                    *|
 \*----------------------------------------------------------------------------------------------------*/
 
+/*----------------------------------------------------------------------------------------------------
+/ Channel variable names:
+/
+/ Ch1 - X-Axis - Right Joystick
+/ Ch2 - Y-Axis - Right Joystick
+/ Ch3 - Y-Axis - Left Joystick
+/ Ch4 - X-Axis - Left Joystick
+/
+/ Button variable names:
+/
+/ Btn5U - Button group 5 - "U" (up)
+/ Btn5D - Button group 5 - "D" (down)
+/ Btn6U - Button group 6 - "U" (up)
+/ Btn6D - Button group 6 - "D" (down)
+/ Btn7U - Button group 7 - "U" (up)
+/ Btn7D - Button group 7 - "D" (down)
+/ Btn7L - Button group 7 - "L" (left)
+/ Btn7R - Button group 7 - "R" (right)
+/ Btn8U - Button group 8 - "U" (up)
+/ Btn8D - Button group 8 - "D" (down)
+/ Btn8L - Button group 8 - "L" (left)
+/ Btn8R - Button group 8 - "R" (right)
+/
+/ Channel variable names for VEXnet Transmitter 2:
+/
+/ Ch1Xmtr2 - X-Axis - Right Joystick
+/ Ch2Xmtr2 - Y-Axis - Right Joystick
+/ Ch3Xmtr2 - Y-Axis - Left Joystick
+/ Ch4Xmtr2 - X-Axis - Left Joystick
+/
+/ Button variable names for VEXnet Transmitter 2:
+/
+/ Btn5UXmtr2 - Button group 5 - "U" (up)
+/ Btn5DXmtr2  - Button group 5 - "D" (down)
+/ Btn6UXmtr2 - Button group 6 - "U" (up)
+/ Btn6DXmtr2 - Button group 6 - "D" (down)
+/ Btn7UXmtr2 - Button group 7 - "U" (up)
+/ Btn7DXmtr2 - Button group 7 - "D" (down)
+/ Btn7LXmtr2 - Button group 7 - "L" (left)
+/ Btn7RXmtr2 - Button group 7 - "R" (right)
+/ Btn8UXmtr2 - Button group 8 - "U" (up)
+/ Btn8DXmtr2 - Button group 8 - "D" (down)
+/ Btn8LXmtr2 - Button group 8 - "L" (left)
+/ Btn8RXmtr2 - Button group 8 - "R" (right)
+/----------------------------------------------------------------------------------------------------*/
+
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
 task main ()
 {
