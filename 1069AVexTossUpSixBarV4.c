@@ -305,6 +305,23 @@ void setArmMotorToZero( void )
 // Use negative distances to backup.
 // To backup 10 inches input distance as -100
 // To backup 34.5 inches input distance as -345
+// Wheel is ~ 5 inches in diameter
+// Circumference is PI * Diameter or ~ 15.7 inches
+// 360 encoder counts per revolution of wheel
+// 360 counts / rev  /  15.7 inches / rev => 22.9 counts / inch
+word getCountsFromDistance( word distance )
+{
+	return (23 * distance) / 10;
+}
+
+
+//----------------------------------------------------------------------------------------------------*/
+// Input the distance in TENTHS of inches
+// 10 inches is input at 100
+// 34.5 inches is input as 345
+// Use negative distances to backup.
+// To backup 10 inches input distance as -100
+// To backup 34.5 inches input distance as -345
 //
 // masterPower is a value between 0 and 127 for motor power / speed.
 //
@@ -361,6 +378,8 @@ word moveStraightForDistance( word distance, word masterPower )
     motor[frontMot_right] = 0;
     motor[backMot_left]   = 0;
     motor[frontMot_left]  = 0;
+
+    return totalCounts;
 }
 
 
@@ -432,8 +451,8 @@ task main ()
         speedCommandLeft                = vexRT[Ch3];//
         speedCommandRight               = vexRT[Ch2];//
 
-        intakeInCmdBtn                  = vexRT[Btn6U] == 1 ? true : false;
-        intakeOutCmdBtn                 = vexRT[Btn6D] == 1 ? true : false;
+        intakeInCommand                 = vexRT[Btn6U] == 1 ? true : false;
+        intakeOutCommand                = vexRT[Btn6D] == 1 ? true : false;
 
         conveyorUpCommand               = vexRT[Btn5U] == 1 ? true : false;
         conveyorDownCommand             = vexRT[Btn5D] == 1 ? true : false;
